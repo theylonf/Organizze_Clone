@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.keneitec.theylonf.organizzeclone">
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.OrganizzeClone"
+        tools:replace="android:theme"
+        tools:targetApi="31">
+        <activity
+            android:name=".view.receitas.ReceitasActivity"
+            android:theme="@style/ReceitasTheme"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".view.despesas.DespesasActivity"
+            android:theme="@style/DespesasTheme"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".view.main.MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_principal"
+            android:theme="@style/Theme.OrganizzeClone.NoActionBar" />
+        <activity
+            android:name=".view.signup.SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.signin.SignInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.intro.IntroActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Intro">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
