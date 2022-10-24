@@ -1,6 +1,5 @@
 package com.keneitec.theylonf.organizzeclone.view.signin
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -9,7 +8,6 @@ import com.keneitec.theylonf.organizzeclone.databinding.ActivitySignInBinding
 import com.keneitec.theylonf.organizzeclone.model.User
 import com.keneitec.theylonf.organizzeclone.util.forceHideKeyboard
 import com.keneitec.theylonf.organizzeclone.util.showSnackBar
-import com.keneitec.theylonf.organizzeclone.view.main.MainActivity
 
 class SignInActivity : AppCompatActivity() {
     private val binding by lazy { ActivitySignInBinding.inflate(layoutInflater) }
@@ -56,7 +54,7 @@ class SignInActivity : AppCompatActivity() {
     private fun loginAccountIsSuccesful() {
         viewModel.firebaseUserResult.observe(this) { result ->
             when (result) {
-                is com.keneitec.theylonf.organizzeclone.data.Result.Success -> finish()
+                is com.keneitec.theylonf.organizzeclone.data.ResultFirebase.Success -> finish()
                 else -> {}
             }
         }
@@ -71,5 +69,4 @@ class SignInActivity : AppCompatActivity() {
         } else binding.editEmailSignIn.error = "Campo obrigatorio"
         binding.root.forceHideKeyboard()
     }
-
 }

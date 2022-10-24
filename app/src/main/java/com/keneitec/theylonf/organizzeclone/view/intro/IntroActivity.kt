@@ -22,8 +22,6 @@ class IntroActivity : IntroActivity() {
         isButtonBackVisible = false
         isButtonNextVisible = false
 
-        verifyIfUserIsLogged()
-
         addSlide(
             FragmentSlide.Builder()
                 .fragment(R.layout.intro_1)
@@ -98,6 +96,11 @@ class IntroActivity : IntroActivity() {
         if (user != null) {
             openMainActivity()
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        verifyIfUserIsLogged()
     }
 
     fun bntSignUp(view: View) {

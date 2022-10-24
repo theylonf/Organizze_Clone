@@ -31,5 +31,9 @@ class FirebaseAuthSource {
                 user.password
             )
         }
+
+        fun deleteUser(): Task<Void>? {
+            return getFirebaseAuth().currentUser?.delete()
+        }
     }
 }

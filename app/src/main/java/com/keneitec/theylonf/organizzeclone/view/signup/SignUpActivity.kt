@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.keneitec.theylonf.organizzeclone.data.ResultFirebase
 import com.keneitec.theylonf.organizzeclone.data.remote.FirebaseAuthSource
+import com.keneitec.theylonf.organizzeclone.data.remote.FirebaseDatabaseSource
 import com.keneitec.theylonf.organizzeclone.databinding.ActivitySignUpBinding
+import com.keneitec.theylonf.organizzeclone.helper.Base64Custom
 import com.keneitec.theylonf.organizzeclone.model.User
 import com.keneitec.theylonf.organizzeclone.util.showSnackBar
 
@@ -19,9 +22,10 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         FirebaseAuthSource.getFirebaseAuth()
+        FirebaseDatabaseSource.getFirebaseDatabase()
 
         getCallbackMsg()
-        createAccountIsSuccessfull()
+        createAccountIsSuccessful()
         uiAnimation()
         setupButtons()
     }
@@ -56,10 +60,10 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    private fun createAccountIsSuccessfull() {
+    private fun createAccountIsSuccessful() {
         viewModel.user.observe(this) { result ->
             when (result) {
-                is com.keneitec.theylonf.organizzeclone.data.Result.Success -> {
+                is ResultFirebase.Success -> {
                     finish()
                 }
                 else -> {}
@@ -71,7 +75,12 @@ class SignUpActivity : AppCompatActivity() {
         if (name.isNotBlank()) {
             if (email.isNotBlank()) {
                 if (password.isNotBlank()) {
-                    val user = User(name, email, password)
+                    val user = User(
+                        idUser = Base64Custom.codifyBase64(email),
+                        name = name,
+                        email = email,
+                        password = password
+                    )
                     createUser(user)
                 } else binding.editPassword.error = "Campo obrigatorio"
             } else binding.editEmail.error = "Campo obrigatorio"
